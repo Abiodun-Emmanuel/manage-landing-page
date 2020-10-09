@@ -1,8 +1,30 @@
-window.onscroll = function() {myFunction()};
+const btnHamburger=document.querySelector('#btnHamburger');
+const header=document.querySelector('header');
+const overlay=document.querySelector('.overlay');
+const bgimage= document.querySelector('.test');
+const fadeElems =document.querySelectorAll('.has-fade');
+const body= document.querySelector('body');
+ 
+btnHamburger.addEventListener('click', function(){
+	if(header.classList.contains('open')){ //close hamburger menu
+	body.classList.remove('noscroll');
+	header.classList.remove('open');
+	fadeElems.forEach(function(element){
+	  element.classList.remove('fade-in');
+	  element.classList.add('fade-out');
+	});
+	
+	
 
-function myFunction() {
-  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  var scrolled = (winScroll / height) * 100;
-  document.getElementById("myBar").style.width = scrolled + "%";
 }
+else { //open hamburger menu
+	body.classList.add('noscroll');
+	header.classList.add('open');
+	fadeElems.forEach(function(element){
+	  element.classList.remove('fade-out');
+	  element.classList.add('fade-in');
+	});
+
+}
+	
+}); 

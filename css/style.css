@@ -9,21 +9,121 @@ html{
   color: hsl(228, 39%, 23%);
 }
 
-/* Sample hamburger
-span {
+/* Sample hamburger */
+.menu span {
   display: block;
-  background: #566973;
+  background: hsl(228, 39%, 23%);
   border-radius: 2px;
   height: 3px;
-  width: 24px;
-  margin-bottom: 5px;
+  width: 26px;
+  transition: all 300ms ease-in-out;
+  transform-origin: 4px 2px;
+ 
 }
 
-*/
-
-body{
-  height: 3000px;
+.menu span:not(:last-child){
+   margin-bottom: 3px;
 }
+
+.open .menu>span:first-child{
+ transform: rotate(45deg);
+}
+
+.open .menu>span:nth-child(2) {
+ opacity: 0;
+}
+
+.open .menu>span:last-child {
+transform: rotate(-45deg);
+}
+
+.open .overlay{
+  display: block;
+}
+
+header .overlay{
+  opacity: 0; 
+  position: fixed;
+  top: 3.75rem;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: linear-gradient(transparent, hsl(227, 12%, 61%));
+}
+
+ .nav-menu{
+  position: absolute;
+  background-color: white;
+  padding: 1.625rem;
+  margin: 3.5rem 1.5rem;
+  border-radius: 5px;
+  width: 90%;
+  left: 45%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+ .nav-menu a{
+  padding: 1rem; 
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: hsl(228, 39%, 23%);
+}
+
+.has-fade{
+  visibility: hidden;
+}
+
+.noscroll{
+  overflow: hidden;
+}
+
+@keyframes fade-in{
+  from{ 
+    visibility: hidden;
+    opacity: 0;
+   }
+
+  1%{
+    visibility: visible;
+    opacity: 0;
+  }   
+
+   to {
+    visibility: visible;
+    opacity: 1;
+   }
+}
+
+.fade-in{
+  animation: fade-in 200ms ease-in-out forwards;
+}
+
+@keyframes fade-out{
+  from{ 
+    visibility: visible;
+    opacity: 1;
+   }
+
+   99%{
+    visibility: visible;
+    opacity: 0;
+   }
+   to {
+    visibility: hidden;
+    opacity: 0;
+   }
+}
+
+.fade-out{
+  animation: fade-out 200ms ease-in-out forwards;
+}
+
+/*Utility classes */
+
 h1{
   font-size: 3rem;
 }
@@ -74,37 +174,11 @@ ul li a{
 }
 
 .hero-button, .general-button, .btn-simplify{
+  display: block;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
-
-.overlay{
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  bottom: 0;
-  left: 0;
-  background-image: linear-gradient( transparent, hsl(227, 12%, 61%));
-}
-
-.nav-menu{
-  position: relative;
-  background-color: white;
-  padding: 1.625rem;
-  text-align: center;
-  margin-top: 3rem;
-  height: auto;
-  border-radius: 5px;
-}
-
-.nav-menu li{
-  list-style-type: none;
-  font-size: 2rem;
-  font-weight: 700;
-  color: hsl(228, 39%, 23%);
-}
-
 
 .hero-image{
   width: 500px;
@@ -123,7 +197,7 @@ ul li a{
 
 .hero-text p{
   font-weight: 400px;
-  width: 90%;
+  width: 80%;
 }
 
 .middle, .middle2, .simplify_section{
@@ -167,16 +241,84 @@ ul li a{
 
 footer{
   background-color: hsl(233, 12%, 13%);
-  height: 500px;
+  padding: 2.5rem;
+  text-align: center;
 }
 
+footer a, .footer-social a{
+  display: inline-block;
+}
 
+footer .footer-form{
+  width: 100%;
+}
 
-@media only screen and (min-width: 992px) {
+footer .footer-form input{
+  border: none;
+  border-radius: 15px;
+  padding: 0.5rem;
+  width: 70%;
+}
+
+footer .footer-form input::placeholder{
+  padding: 0.8rem;
+  font-size: 0.8rem;
+}
+
+footer .footer-form a{
+  border-radius: 15px;
+  padding: 0.5rem 1.5rem; 
+}
+
+@media only screen and (min-width: 991px) {
 .hero-button{
   display: block;
   position: absolute;
   left: 20%;
 }
 
+.hero-text p{
+  font-weight: 400px;
+  width: 100%;
+}
+
+.hero-button{
+  position: absolute;
+  left: 13%;
+}
+
+.footer {
+  display: grid;
+  grid-template-areas:
+  'm1 m2 m3 m4'
+  'm5 m2 m3 m8';
+  grid-gap: 10px;
+  padding: 10px;
+  grid-template-columns: repeat(3, 1fr) 2fr;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.footer .footer-form {
+  grid-area: m4;
+}
+
+.footer .footer-copyright {
+  grid-area: m8;
+}
+
+.footer .footer-logo {
+  grid-area: m1;
+}
+
+.footer .footer-social {
+  grid-area: m5;
+}
+
+.footer .footer-links .links1{
+  grid-area: m2;
+}
+
+.footer .footer-links .links2{
+  grid-area: m3;
+}
 }
